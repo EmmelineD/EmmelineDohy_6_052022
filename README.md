@@ -31,7 +31,7 @@ dépendances à installer :
 
 
 1. Cloner le dépôt
-- Dans le dossier front-end "Web-Developer-P6" : run `ng serve` et Naviguez jusqu’à `http://localhost:4200/`. L’application se rechargera automatiquement si vous modifiez l’un des fichiers sources.
+- Dans le dossier front-end : run `ng serve` et Naviguez jusqu’à `http://localhost:4200/`. L’application se rechargera automatiquement si vous modifiez l’un des fichiers sources.
 
 2. Dans le dossier backend : 
 - creer un dossier images
