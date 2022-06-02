@@ -1,4 +1,4 @@
-//Importation de multer
+//importation de multer
 const multer = require('multer');
 
 //configuration des extensions possible
@@ -8,7 +8,7 @@ const MIME_TYPES = {
   'image/png': 'png'
 };
 
-//Configuration du chemin pour enregistrer le fichier et sous quel nom
+//configuration du chemin pour enregistrer le fichier et sous quel nom
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     callback(null, 'images');
@@ -20,5 +20,5 @@ const storage = multer.diskStorage({
   }
 });
 
-//Exportation du middleware multer
+//exportation du middleware multer
 module.exports = multer({ storage }).single('image');
