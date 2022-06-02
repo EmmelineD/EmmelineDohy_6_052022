@@ -1,7 +1,7 @@
-//Importation de mongoose
+//Importation de mongoose pour pouvoir enregistrer les données user dans la BDD
 const mongoose = require('mongoose');
 
-//Importation du plugin
+//Importation du plugin (complément de "unique:true" double sécuriter pour s'assurer qu'un mail ne peut pas être utiliser plusieurs fois)
 const uniqueValidator = require('mongoose-unique-validator');
 
 //Création d'un schéma
@@ -13,7 +13,7 @@ const userSchema = mongoose.Schema({
         unique: true,
         validate: {
             validator: function(v) {
-                return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
+                return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v); // regEX utilisé dans le projet 5 pour s'assurer que le format de l'email est valide
             },
             message: "Mail non valide"
         },
@@ -22,8 +22,8 @@ const userSchema = mongoose.Schema({
     password: { type: String, required: true }
 });
 
-//Plugin appliqué au schéma pour empecher d'avoir plusieurs utilisateurs avec la meme adresse mail
+//utilisation du plugin uniqueValidator
 userSchema.plugin(uniqueValidator);
 
-//Exportation du shcéma sous forme de modèle
+//Exportation du model User
 module.exports = mongoose.model('User', userSchema);
