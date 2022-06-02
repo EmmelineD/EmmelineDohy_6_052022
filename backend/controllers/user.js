@@ -1,18 +1,18 @@
-//Importation de bcrypt
+//importation de bcrypt
 const bcrypt = require('bcrypt');
 
-//Importation de jsonwebtoken
+//importation de jsonwebtoken
 const jwt = require('jsonwebtoken');
 
-//Importation de dotenv
+//importation de dotenv
 const dotenv = require('dotenv');
 dotenv.config();
 
-//Importation du model user
+//1mportation du model user
 const User = require('../models/user');
 
 
-//Création d'un compte user
+//création d'un compte user
 exports.signup = (req, res, next) => {
   bcrypt.hash(req.body.password, 10)
         .then(hash => {
