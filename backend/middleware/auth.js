@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 dotenv.config();
 
-// vérification du token
+//vérification du token
 module.exports = (req, res, next) => {
   try { 
     const token = req.headers.authorization.split(' ')[1]; 
