@@ -1,8 +1,8 @@
+//récupération du model de création d'une sauce
 const Sauce = require('../models/Sauce');
 const fs = require('fs');
 
- // créer un objet
-
+ //créer une sauce
  exports.createSauce = (req, res, next) => {
   const sauceObject = JSON.parse(req.body.sauce);
   delete sauceObject._id;
@@ -19,8 +19,7 @@ const fs = require('fs');
     .catch(error => res.status(400).json({ error }));
 };
 
-// récupération d'un objet avec son id
-
+//récupération d'une sauce avec son id
 exports.getOneSauce = (req, res, next) => {
   Sauce.findOne({
     _id: req.params.id
@@ -37,8 +36,7 @@ exports.getOneSauce = (req, res, next) => {
   );
 };
 
-// modifier un objet
-
+//modifier une sauce
 exports.modifySauce = (req, res, next) => {
   Sauce.findOne({ _id: req.params.id }) 
       .then(sauce => {
@@ -66,15 +64,14 @@ exports.modifySauce = (req, res, next) => {
         })
 };
 
-// supprimer un objet
-
+//supprimer une sauce
 exports.deleteSauce = (req, res, next) => {
   Sauce.findOne({ _id: req.params.id }) 
       .then(sauce => {
         if(req.auth.userId == sauce.userId) {
         const filename = sauce.imageUrl.split('/images/')[1];
         fs.unlink(`images/${filename}`, () => {
-          Sauce.deleteOne({ _id: req.params.id }) // suppression de l'image dans la BDD
+          Sauce.deleteOne({ _id: req.params.id }) //suppression de l'image dans la BDD
             .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
             .catch(error => res.status(400).json({ error }));
         });
@@ -85,8 +82,7 @@ exports.deleteSauce = (req, res, next) => {
       .catch(error => res.status(500).json({ error }));
   };
 
-// afficher tous les objets
-
+//afficher toutes les sauces
 exports.getAllSauces = (req, res, next) => {
   Sauce.find()
     .then(sauces => res.status(200).json(sauces))
@@ -94,7 +90,6 @@ exports.getAllSauces = (req, res, next) => {
 };
 
 //Like dislike une sauce
-
 exports.likeDislikeSauce = (req, res, next) => {
   const like = req.body.like;
   const userId = req.body.userId;

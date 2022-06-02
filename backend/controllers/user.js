@@ -1,18 +1,18 @@
-//Importation de bcrypt
+//importation de bcrypt
 const bcrypt = require('bcrypt');
 
-//Importation de jsonwebtoken
+//importation de jsonwebtoken
 const jwt = require('jsonwebtoken');
 
-//Importation de dotenv
+//importation de dotenv
 const dotenv = require('dotenv');
 dotenv.config();
 
-//Importation du model user
+//importation du model user
 const User = require('../models/user');
 
 
-//L'utilisateur crée un compte
+//création d'un compte user
 exports.signup = (req, res, next) => {
   bcrypt.hash(req.body.password, 10)
         .then(hash => {
@@ -27,7 +27,7 @@ exports.signup = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));     
 };
 
-//L'utilisateur se connecte à un compte existant
+//connexion à un compte user existant
 exports.login = (req, res, next) => {
   User.findOne({ email: req.body.email })
     .then(user => {

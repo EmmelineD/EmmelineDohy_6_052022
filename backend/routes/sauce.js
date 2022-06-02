@@ -1,16 +1,30 @@
+//importation d'Express
 const express = require('express');
+
+//création des routes via express
 const router = express.Router();
 
+//importation du middleware d'authentification
 const auth = require('../middleware/auth');
+
+//importation du middleware pour les images multer
 const multer = require('../middleware/multer-config');
 
+//importation du controllers sauce
 const sauceCtrl = require('../controllers/sauce');
 
-router.get('/', auth, sauceCtrl.getAllSauces); // afficher tous les objets
-router.post('/', auth, multer, sauceCtrl.createSauce); // créer un objet (placer multer après auth sinon une image peut être enregistré sans l'authentification)
-router.get('/:id', auth, sauceCtrl.getOneSauce); // récupération d'un objet avec son id
-router.put('/:id', auth, multer, sauceCtrl.modifySauce); // modifier un objet
-router.delete('/:id', auth, sauceCtrl.deleteSauce); // supprimer un objet
-router.post('/:id/like', auth, sauceCtrl.likeDislikeSauce); // like dislike
+// afficher toutes les sauces
+router.get('/', auth, sauceCtrl.getAllSauces); 
+// créer une sauce (placer multer après auth sinon une image peut être enregistré sans l'authentification)
+router.post('/', auth, multer, sauceCtrl.createSauce);
+// récupération d'une sauce avec son id
+router.get('/:id', auth, sauceCtrl.getOneSauce); 
+// modifier une sauce
+router.put('/:id', auth, multer, sauceCtrl.modifySauce);
+// supprimer une sauce
+router.delete('/:id', auth, sauceCtrl.deleteSauce);
+// like dislike une sauce
+router.post('/:id/like', auth, sauceCtrl.likeDislikeSauce);
 
+//exporter les routes créées
 module.exports = router;
