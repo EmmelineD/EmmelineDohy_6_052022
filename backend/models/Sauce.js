@@ -1,5 +1,4 @@
-
-//Importation de mongoose
+//Importation de mongoose pour pouvoir enregistrer les données dans la BDD
 const mongoose = require('mongoose');
 
 //Création d'un schéma de données
@@ -17,5 +16,5 @@ const sauceSchema = mongoose.Schema({
     usersDisliked: { type: [String] }
 });
 
-//Exportation du modele 
+//Exportation du model Sauce
 module.exports = mongoose.model('Sauce', sauceSchema);
