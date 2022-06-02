@@ -13,17 +13,17 @@ const multer = require('../middleware/multer-config');
 //Importation du controllers sauce
 const sauceCtrl = require('../controllers/sauce');
 
-// afficher tous les objets
+// afficher toutes les sauces
 router.get('/', auth, sauceCtrl.getAllSauces); 
-// créer un objet (placer multer après auth sinon une image peut être enregistré sans l'authentification)
+// créer une sauce (placer multer après auth sinon une image peut être enregistré sans l'authentification)
 router.post('/', auth, multer, sauceCtrl.createSauce);
-// récupération d'un objet avec son id
+// récupération d'une sauce avec son id
 router.get('/:id', auth, sauceCtrl.getOneSauce); 
-// modifier un objet
+// modifier une sauce
 router.put('/:id', auth, multer, sauceCtrl.modifySauce);
-// supprimer un objet
+// supprimer une sauce
 router.delete('/:id', auth, sauceCtrl.deleteSauce);
-// like dislike
+// like dislike une sauce
 router.post('/:id/like', auth, sauceCtrl.likeDislikeSauce);
 
 //exporter les routes créées
