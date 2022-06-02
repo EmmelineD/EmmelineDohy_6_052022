@@ -1,16 +1,16 @@
-//Importation d'Express
+//importation d'Express
 const express = require('express');
 
-//Création des routes via express
+//création des routes via express
 const router = express.Router();
 
-//Importation du middleware d'authentification
+//importation du middleware d'authentification
 const auth = require('../middleware/auth');
 
-//Importation du middleware pour les images multer
+//importation du middleware pour les images multer
 const multer = require('../middleware/multer-config');
 
-//Importation du controllers sauce
+//importation du controllers sauce
 const sauceCtrl = require('../controllers/sauce');
 
 // afficher toutes les sauces
