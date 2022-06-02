@@ -4,7 +4,7 @@ const express = require('express');
 //Importation d'helmet
 const helmet = require('helmet');
 
-//Importation de dotenv pour les variables d'environnement
+//Importation de dotenv pour les variables d'environnement déffini dans .env
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -31,11 +31,12 @@ mongoose.connect(process.env.MONGO,
   .catch((error) => console.log('Connexion à MongoDB échouée !', error));
 
 
-//Middleware pour résoudre les problemes de CORS 
+//Middleware pour résoudre les problemes de CORS
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  //permettre l'échange de données avec la BDD qui est externe
   res.setHeader('cross-origin-resource-policy', 'cross-origin');
   next();
 });
@@ -43,12 +44,12 @@ app.use((req, res, next) => {
 //Middleware pour avoir accès au corps de la requete 
 app.use(express.json());
 
-//Configuration du middleware pour permettre l'accès aux images
+//middleware pour accéder aux images
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-//Enregistrement des routes
+//utilisation des routes
 app.use('/api/auth', userRoutes);
 app.use('/api/sauces', sauceRoutes);
 
-//Exportation de cette application
+//Exportation de app.js
 module.exports = app;

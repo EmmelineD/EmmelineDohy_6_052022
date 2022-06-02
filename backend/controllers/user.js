@@ -11,7 +11,6 @@ dotenv.config();
 //importation du model user
 const User = require('../models/user');
 
-
 //création d'un compte user
 exports.signup = (req, res, next) => {
   bcrypt.hash(req.body.password, 10)

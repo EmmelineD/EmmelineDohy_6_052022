@@ -16,3 +16,4 @@ passwordSchema
 
 //exportation du schéma
 module.exports = passwordSchema;
+
