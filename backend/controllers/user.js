@@ -12,7 +12,7 @@ dotenv.config();
 const User = require('../models/user');
 
 
-//L'utilisateur crée un compte
+//Création d'un compte user
 exports.signup = (req, res, next) => {
   bcrypt.hash(req.body.password, 10)
         .then(hash => {
@@ -27,7 +27,7 @@ exports.signup = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));     
 };
 
-//L'utilisateur se connecte à un compte existant
+//connexion à un compte user existant
 exports.login = (req, res, next) => {
   User.findOne({ email: req.body.email })
     .then(user => {
