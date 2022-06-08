@@ -13,7 +13,7 @@ Compétences développées :
 ➡ Stocker des données de manière sécurisée   
 ➡ Mettre en œuvre des opérations CRUD de manière sécurisée   
 
-Status : en cours
+Status : terminé
 
 ## Installation
 dépendances à installer : 
